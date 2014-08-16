@@ -8,11 +8,11 @@ Django email users
 
 .. image:: https://pypip.in/v/django-email-users/badge.svg
     :alt: Current PyPI release
-    :target: https://crate.io/packages/django-email-users
+    :target: https://pypi.python.org/pypi/django-email-users
 
 .. image:: https://pypip.in/d/django-email-users/badge.svg
     :alt: Download count
-    :target: https://crate.io/packages/django-email-users
+    :target: https://pypi.python.org/pypi/django-email-users
 
 For when you want regular Django users but without the usernames.
 

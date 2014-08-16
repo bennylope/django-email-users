@@ -20,6 +20,7 @@ try:
         ],
         SITE_ID=1,
         NOSE_ARGS=['-s'],
+        AUTH_USER_MODEL='users.User',
     )
 
     try:

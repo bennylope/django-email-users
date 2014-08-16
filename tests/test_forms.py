@@ -13,7 +13,16 @@ class TestForms(unittest.TestCase):
             email="other@test.co", defaults={'password': "pass"}
         )
 
-    def test_create_duplicate_email(self):
+    def test_create_unique(self):
+        """Ensure basic data validates"""
+        form = UserCreationForm(data={
+            'email': 'new@blah.com',
+            'password1': 'pass',
+            'password2': 'pass',
+        })
+        self.assertTrue(form.is_valid())
+
+    def test_create_duplicate(self):
         """Ensure an existing email address results in an error"""
         form = UserCreationForm(data={
             'email': 'test@test.co',
@@ -22,14 +31,14 @@ class TestForms(unittest.TestCase):
         })
         self.assertFalse(form.is_valid())
 
-    def test_create_unique_email(self):
-        """Ensure basic data validates"""
+    def test_create_icase_duplicate(self):
+        """Ensure email validation is case insensitive"""
         form = UserCreationForm(data={
-            'email': 'new@blah.com',
-            'password1': 'pass',
-            'password2': 'pass',
+            'email': 'Test@Test.co',
+            'password1': 'new',
+            'password2': 'new',
         })
-        self.assertTrue(form.is_valid())
+        self.assertFalse(form.is_valid())
 
     def test_change_email(self):
         """Ensure resupplying the email address raises no error"""

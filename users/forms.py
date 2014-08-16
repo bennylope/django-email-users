@@ -28,9 +28,17 @@ class UserCreationForm(forms.ModelForm):
         fields = ("email",)
 
     def clean_email(self):
-        # Since User.email is unique, this check is redundant,
-        # but it sets a nicer error message than the ORM. See #13147.
-        email = self.cleaned_data["email"]
+        """
+        Validates that the email address does not exist already, and tests
+        against lower cased email address.
+
+        The de jure standard is that the local component of email addresses is
+        case sensitive however the de facto standard is that they are not. In
+        practice what happens is user confusion over why an email address
+        entered with camel casing one day does not match an email address
+        entered in different casing another day.
+        """
+        email = self.cleaned_data["email"].lower()
         try:
             User._default_manager.get(email=email)
         except User.DoesNotExist:

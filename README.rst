@@ -2,6 +2,18 @@
 Django email users
 ==================
 
+.. image:: https://secure.travis-ci.org/bennylope/django-email-users.svg?branch=master
+    :alt: Build Status
+    :target: http://travis-ci.org/bennylope/django-email-users
+
+.. image:: https://pypip.in/v/django-email-users/badge.svg
+    :alt: Current PyPI release
+    :target: https://crate.io/packages/django-email-users
+
+.. image:: https://pypip.in/d/django-email-users/badge.svg
+    :alt: Download count
+    :target: https://crate.io/packages/django-email-users
+
 For when you want regular Django users but without the usernames.
 
 This is a stock replacement for Django's `auth.User` model that removes the

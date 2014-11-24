@@ -76,6 +76,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.email.lower()
         return super(User, self).save(*args, **kwargs)
 
+    def get_username(self):
+        """
+        Returns the email address
+
+        Satisifies API needs of other libraries.
+        """
+        return self.email
+
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.

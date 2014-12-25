@@ -44,3 +44,6 @@ Change your project's configured user in your settings.py file::
     AUTH_USER_MODEL = 'users.User'
 
 Profit.
+
+If you are using South with Django prior to Django 1.7, you will need to use
+South 1+.

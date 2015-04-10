@@ -1,4 +1,5 @@
 import unittest
+from django.utils import timezone
 from users.forms import UserCreationForm, UserChangeForm
 from users.models import User
 
@@ -6,11 +7,13 @@ from users.models import User
 class TestForms(unittest.TestCase):
 
     def setUp(self):
+        defaults = {'password': "pass", "last_login": timezone.now(),
+                "date_joined": timezone.now()}
         self.user, _ = User.objects.get_or_create(
-            email="test@test.co", defaults={'password': "pass"}
+            email="test@test.co", defaults=defaults,
         )
         self.other, _ = User.objects.get_or_create(
-            email="other@test.co", defaults={'password': "pass"}
+            email="other@test.co", defaults=defaults,
         )
 
     def test_create_unique(self):

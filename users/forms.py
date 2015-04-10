@@ -75,6 +75,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)

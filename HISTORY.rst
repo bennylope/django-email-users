@@ -3,6 +3,11 @@
 History
 -------
 
+0.4.0 (2015-04-15)
+++++++++++++++++++
+
+* Update Django migrations to reflect field changes for base user model
+
 0.3.0 (2015-04-10)
 ++++++++++++++++++
 

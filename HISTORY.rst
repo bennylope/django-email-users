@@ -3,6 +3,15 @@
 History
 -------
 
+1.0.0 (2016-04-21)
+++++++++++++++++++
+
+* Remove User.title field (POTENTIALLY BREAKING). This field should not have
+  been added. If you're using this field you shouldn't upgrade!
+* Drop support for Django 1.6, 1.7
+* Add support for Django 1.9
+* Add support for Python 3.5
+
 0.4.0 (2015-04-15)
 ++++++++++++++++++
 

@@ -1,55 +1,60 @@
-.PHONY: clean-pyc clean-build docs
+.PHONY: clean-pyc clean-build docs clean
 
-help:
-	@echo "clean-build - remove build artifacts"
-	@echo "clean-pyc - remove Python file artifacts"
-	@echo "lint - check style with flake8"
-	@echo "test - run tests quickly with the default Python"
-	@echo "testall - run tests on every Python version with tox"
-	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "docs - generate Sphinx HTML documentation, including API docs"
-	@echo "release - package and upload a release"
-	@echo "sdist - package"
-
-clean: clean-build clean-pyc
+clean: clean-build clean-pyc clean-test-all
 
 clean-build:
-	rm -fr build/
-	rm -fr dist/
-	rm -fr *.egg-info
+	@rm -rf build/
+	@rm -rf dist/
+	@rm -rf *.egg-info
 
 clean-pyc:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
+	-@find . -name '*.pyc' -follow -print0 | xargs -0 rm -f &> /dev/null
+	-@find . -name '*.pyo' -follow -print0 | xargs -0 rm -f &> /dev/null
+	-@find . -name '__pycache__' -type d -follow -print0 | xargs -0 rm -rf &> /dev/null
+
+clean-test:
+	rm -rf .coverage coverage*
+	rm -rf tests/.coverage test/coverage*
+	rm -rf htmlcov/
+
+clean-test-all: clean-test
+	rm -rf .tox/
 
 lint:
-	flake8 django-email-users tests
+	flake8 users
 
-test:
-	python runtests.py test
+test:  ## Run test suite against current Python path
+	python runtests.py
 
-test-all:
-	tox
+test-coverage: clean-test
+	-py.test ${COVER_FLAGS} ${TEST_FLAGS}
+	@exit_code=$?
+	@-coverage html
+	@exit ${exit_code}
 
-coverage:
-	coverage run --source django-email-users setup.py test
-	coverage report -m
-	coverage html
-	open htmlcov/index.html
+test-all:  ## Run all tox test environments, parallelized
+	detox
 
-docs:
-	rm -f docs/django-email-users.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ django-email-users
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	open docs/_build/html/index.html
+check: clean-build clean-pyc clean-test lint test-coverage
 
-release: clean
+release: clean  ## Uploads new source and wheel distributions (cleans first)
 	python setup.py sdist upload
 	python setup.py bdist_wheel upload
 
-sdist: clean
+dist: clean  ## Creates new source and wheel distributions (cleans first)
 	python setup.py sdist
+	python setup.py bdist_wheel
 	ls -l dist
+
+api-docs:  ## Build autodocs from docstrings
+	sphinx-apidoc -f -o docs users
+
+manual-docs:  ## Build written docs
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
+
+docs:  api-docs manual-docs ## Builds and open docs
+	open docs/_build/html/index.html
+
+help:
+	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

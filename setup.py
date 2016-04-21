@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import sys
-
 import users
 
 try:
@@ -12,13 +9,6 @@ except ImportError:
     from distutils.core import setup
 
 version = users.__version__
-
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    print("You probably want to also tag the version now:")
-    print("  git tag -a %s -m 'version %s'" % (version, version))
-    print("  git push --tags")
-    sys.exit()
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
@@ -29,7 +19,7 @@ setup(
     description="""Stock user app but without usernames""",
     long_description=readme + '\n\n' + history,
     author='Ben Lopatin',
-    author_email='ben@wellfire.co',
+    author_email='ben@benlopatin.com',
     url='https://github.com/bennylope/django-email-users',
     packages=[
         'users',
@@ -49,7 +39,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 )

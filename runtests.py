@@ -23,15 +23,10 @@ try:
         AUTH_USER_MODEL='users.User',
     )
 
-    try:
-        import django
-        setup = django.setup
-    except AttributeError:
-        pass
-    else:
-        setup()
-
+    import django
+    django.setup()
     from django_nose import NoseTestSuiteRunner
+
 except ImportError:
     raise ImportError("To fix this error, run: pip install -r requirements-test.txt")
 

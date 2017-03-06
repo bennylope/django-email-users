@@ -8,7 +8,6 @@ from distutils.version import LooseVersion
 from .models import User
 
 
-import pdb; pdb.set_trace()
 PASSWD_URL = "password/"
 if LooseVersion(django.get_version()) >= LooseVersion("1.9"):
     PASSWD_URL = "../" + PASSWD_URL

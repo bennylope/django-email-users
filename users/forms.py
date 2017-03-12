@@ -12,6 +12,7 @@ PASSWD_URL = "password/"
 if LooseVersion(django.get_version()) >= LooseVersion("1.9"):
     PASSWD_URL = "../" + PASSWD_URL
 
+
 class UserCreationForm(forms.ModelForm):
     """
     A form that creates a user, with no privileges, from the given username and

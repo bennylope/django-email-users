@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
+import django
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext_lazy as _
 
+from distutils.version import LooseVersion
 from .models import User
+
+
+PASSWD_URL = "password/"
+if LooseVersion(django.get_version()) >= LooseVersion("1.9"):
+    PASSWD_URL = "../" + PASSWD_URL
 
 
 class UserCreationForm(forms.ModelForm):
@@ -71,7 +78,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(label=_("Password"),
         help_text=_("Raw passwords are not stored, so there is no way to see "
                     "this user's password, but you can change the password "
-                    "using <a href=\"password/\">this form</a>."))
+                    "using <a href=\"{}\">this form</a>.".format(PASSWD_URL)))
 
     class Meta:
         model = User

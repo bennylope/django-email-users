@@ -3,6 +3,11 @@
 History
 -------
 
+1.1.0 (2017-07-11)
+++++++++++++++++++
+
+* Updated password change form link for User's ModelAdmin class
+
 1.0.0 (2016-04-21)
 ++++++++++++++++++
 

@@ -6,11 +6,11 @@ Django email users
     :alt: Build Status
     :target: http://travis-ci.org/bennylope/django-email-users
 
-.. image:: https://pypip.in/v/django-email-users/badge.svg
+.. image:: https://img.shields.io/pypi/v/django-email-users.svg
     :alt: Current PyPI release
     :target: https://pypi.python.org/pypi/django-email-users
 
-.. image:: https://pypip.in/d/django-email-users/badge.svg
+.. image:: https://img.shields.io/pypi/dm/django-email-users.svg
     :alt: Download count
     :target: https://pypi.python.org/pypi/django-email-users
 

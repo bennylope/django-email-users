@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import django
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField

@@ -1,16 +1,11 @@
-# -*- coding: utf-8 -*-
-import django
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-from distutils.version import LooseVersion
 from .models import User
 
 
-PASSWD_URL = "password/"
-if LooseVersion(django.get_version()) >= LooseVersion("1.9"):
-    PASSWD_URL = "../" + PASSWD_URL
+PASSWD_URL = "../password/"
 
 
 class UserCreationForm(forms.ModelForm):
@@ -32,7 +27,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("email",)
+        fields = ["email"]
 
     def clean_email(self):
         """

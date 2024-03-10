@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .forms import UserCreationForm, UserChangeForm
 from .models import User
 
 
+@admin.register(User)
 class UserAdmin(AuthUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -28,4 +28,3 @@ class UserAdmin(AuthUserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(User, UserAdmin)

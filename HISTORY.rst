@@ -3,6 +3,20 @@
 History
 -------
 
+2.0.0 (2024-03-10)
+++++++++++++++++++
+
+* Dropped support for Django 1.x!
+* Dropped support for Python 2.7!
+* Added support for Django 3.2, 4.2, and 5.x
+* Added support for Python 3.8-3.12
+* Restructured project, build, and testing
+
+1.1.0 (2017-07-11)
+++++++++++++++++++
+
+* Updated password change form link for User's ModelAdmin class
+
 1.0.0 (2016-04-21)
 ++++++++++++++++++
 

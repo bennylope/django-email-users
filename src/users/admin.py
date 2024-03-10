@@ -6,6 +6,7 @@ from .forms import UserCreationForm, UserChangeForm
 from .models import User
 
 
+@admin.register(User)
 class UserAdmin(AuthUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -27,4 +28,3 @@ class UserAdmin(AuthUserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(User, UserAdmin)

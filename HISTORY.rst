@@ -3,6 +3,13 @@
 History
 -------
 
+2.1.0 (2025-01-26)
+++++++++++++++++++
+
+* Dropped support for Python 3.8
+* Added support for Python 3.13
+* Replaced support for Django 5.0 with Django 5.1
+
 2.0.0 (2024-03-10)
 ++++++++++++++++++
 
